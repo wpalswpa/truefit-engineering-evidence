@@ -1,0 +1,42 @@
+{
+  "_comment": "비공개 팀 저장소에서 2026-09-21에 기록된 릴리스 검증 결과. 이 공개 저장소가 재현하는 값이 아니다.",
+  "recorded_at": "2026-09-21T06:22:04Z",
+  "source": "private team repository (wpalswpa/truefit)",
+  "source_sha256_prefix": "f50ced97",
+  "reproducible_here": false,
+  "release_gate": {
+    "artifact": "artifacts/gate.json",
+    "pytest": { "tests": 464, "failures": 0 },
+    "browser_journeys": 29,
+    "visual_checks": 96,
+    "check_shape": "화면폭 4종 x 24화면 = 96. 각 검사는 status와 overflow 여부를 본다."
+  },
+  "package_check": {
+    "artifact": "artifacts/package-check.json",
+    "mode": "consumer_business_simulation",
+    "application_survives_server_restart": true,
+    "server_restart_retains_evidence_and_session": true,
+    "backup_integrity": "pass",
+    "backup_restored_to_separate_database": true,
+    "restored_schema_and_all_rows_match_backup": true,
+    "restored_database_accepts_new_transaction_and_restart": true,
+    "backup_source_unchanged": true,
+    "failure_retry": true,
+    "limits": "Local simulation only. No real funds, public deployment, identities or adoption verified."
+  },
+  "ai_review": {
+    "artifact": "artifacts/ai-eval.json",
+    "model": "openai/gpt-4.1-mini",
+    "mode": "saved_response_review",
+    "cases": 11,
+    "passed_cases": 11,
+    "paid_api_calls": 0,
+    "limits": "Rechecks saved synthetic outputs only. No fresh model calls, real-contract accuracy or user benefit measured."
+  },
+  "not_verified": [
+    "실제 결제·송금·정산 집행",
+    "실사용자 채택 및 트래픽 대응",
+    "실제 계약 문서에 대한 추출 정확도",
+    "프롬프트·모델 변경에 따른 생성 품질 변화"
+  ]
+}

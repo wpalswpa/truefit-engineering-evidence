@@ -1,0 +1,6 @@
+{
+  "issues": [
+    { "kind": "wrong_deduction", "first": 3, "last": 3 },
+    { "kind": "schedule_agreement", "first": 2, "last": 2 }
+  ]
+}
