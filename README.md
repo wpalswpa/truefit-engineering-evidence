@@ -6,6 +6,15 @@
 원본은 3인 팀 프로젝트(비공개)이고, 여기 있는 코드는 팀 코드의 사본이 아니라
 검증 규칙만 최소 형태로 다시 쓴 것입니다. 범위는 [docs/architecture.md](docs/architecture.md).
 
+## 문제 해결을 먼저 읽기
+
+| 문제 | 선택 | 확인 방법 |
+|---|---|---|
+| 생성된 인용문을 원문 근거로 오인할 수 있음 | LLM에는 구간 ID 선택만 맡기고 서버가 원문을 추출 | [선택 이유와 대안](docs/decisions/001-source-span-extraction.md) |
+| 유료 호출과 모델 변경에 따라 회귀 검사가 흔들림 | 저장 응답으로 서버 규칙을 오프라인 검사 | [회귀 검사 설계](docs/decisions/002-offline-regression.md) · [실행할 검사](tests/test_contract_examples.py) |
+
+검사는 원문 인용·응답 형식 규칙을 확인합니다. 올바른 쟁점을 골랐는지에 대한 의미 정확도는 별도 검증 대상입니다.
+
 ## 바로 실행
 
 ```bash
