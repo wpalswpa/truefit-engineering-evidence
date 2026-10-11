@@ -1,7 +1,7 @@
 """검증 규칙의 불변식. 검사 이름이 곧 '깨지면 안 되는 것'이다.
 
 비공개 팀 저장소에는 pytest 464개가 있다. 여기 옮긴 것은 그중 **LLM 응답 검증의
-핵심 불변식 9개**뿐이다. 464개를 재현하는 저장소가 아니다(evidence/gate-summary.json 참고).
+핵심 불변식 11개**뿐이다. 464개를 재현하는 저장소가 아니다(evidence/gate-summary.json 참고).
 
 표준 라이브러리만 쓴다. API 키도 네트워크도 필요 없다.
     python -m unittest discover -s tests -v
@@ -57,6 +57,15 @@ class ResponseRejection(unittest.TestCase):
     def test_unknown_kind_is_rejected(self):
         with self.assertRaises(ValidationError):
             materialize({"issues": [{"kind": "refund_now", "first": 1, "last": 1}]}, SOURCE)
+
+    def test_non_string_kind_is_rejected_as_validation_error(self):
+        """분류 자리에 리스트·객체가 오면 해시할 수 없어 TypeError 로 새 나가면 안 된다.
+
+        호출부는 ValidationError 만 받아 원문 확인 경로로 보낸다. 다른 예외는 500 이 된다.
+        """
+        for kind in (["not_received"], {"not_received": 1}, None, 1):
+            with self.subTest(kind=kind), self.assertRaises(ValidationError):
+                materialize({"issues": [{"kind": kind, "first": 1, "last": 1}]}, SOURCE)
 
     def test_out_of_range_segment_is_rejected(self):
         over = len(split_segments(SOURCE)) + 1

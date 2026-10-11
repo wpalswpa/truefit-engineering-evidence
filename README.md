@@ -58,11 +58,13 @@ quoted_text_is_reconstructed_from_source      인용문은 원문에서 만들�
 model_generated_quote_is_never_rendered       모델이 쓴 문장은 화면에 가지 않는다
 prompt_injection_text_cannot_reach_the_quote  주입 문구도 인용문을 조작하지 못한다
 unknown_kind_is_rejected                      정의되지 않은 분류는 거부
+non_string_kind_is_rejected_as_validation_error  분류 자리의 리스트·객체도 검증 오류로 거부
 out_of_range_segment_is_rejected              원문 범위 밖 구간은 거부
 reversed_span_is_rejected                     first > last 는 범위가 아니다
 partial_response_is_rejected                  필드가 빠지면 일부도 쓰지 않는다
 extra_field_is_rejected                       모르는 필드가 붙으면 거부
 boolean_is_not_accepted_as_segment_id         True 는 1 이지만 ID 가 아니다
+recorded_validation_result_matches_current_code  examples/ 의 기록된 결과가 지금 코드와 같다
 ```
 
 ## 이 설계가 막지 못하는 것
@@ -87,5 +89,4 @@ boolean_is_not_accepted_as_segment_id         True 는 1 이지만 ID 가 아니
 
 실제 결제·송금, 실사용자 채택, 실제 계약에 대한 추출 정확도는 검증하지 않았습니다.
 
-공개 시연: <https://truefit-wanted.onrender.com/>
-(무료 호스팅이라 첫 접속이 느릴 수 있습니다.)
+공개 시연 서버는 2026-10 기준 중지 상태입니다(접속 시 503). 이 저장소의 검사는 서버 없이 위 `바로 실행`으로 확인할 수 있습니다.

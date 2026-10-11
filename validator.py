@@ -88,7 +88,8 @@ def materialize(response: dict, source: str) -> list[dict]:
             raise ValidationError("응답 항목의 형식을 확인하지 못했습니다.")
 
         kind, first, last = item["kind"], item["first"], item["last"]
-        if kind not in ISSUE_KINDS:
+        # 리스트·객체는 해시할 수 없어 `in` 검사에서 TypeError 가 난다. 문자열부터 확인한다.
+        if not isinstance(kind, str) or kind not in ISSUE_KINDS:
             raise ValidationError("정의되지 않은 분류입니다.")
         # bool 은 int 의 하위형이라 isinstance 로는 걸러지지 않는다. type 으로 본다.
         if type(first) is not int or type(last) is not int:
