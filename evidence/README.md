@@ -16,7 +16,7 @@
 ## 이 저장소에서 직접 확인할 수 있는 것
 
 ```bash
-python -m unittest discover -s tests -v   # 불변식 10개, API 키·네트워크 불필요
+python -m unittest discover -s tests -v   # 불변식 11개, API 키·네트워크 불필요
 ```
 
 464개를 재현하지 않는다. 검사 **개수**가 아니라 **무엇이 깨지면 안 되는지**를 보여 주는 게
